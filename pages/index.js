@@ -1,16 +1,15 @@
-import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+// import * as React from 'react';
+import { Typography } from "@mui/material";
+import Layout from "../components/Layout";
 
 export default function Index() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
+    <>
+      <Layout>
         <Typography variant="h4" component="h1" gutterBottom>
           Next.js example
         </Typography>
-      </Box>
-    </Container>
+      </Layout>
+    </>
   );
 }
