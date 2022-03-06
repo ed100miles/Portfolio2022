@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import { Typography } from "@mui/material";
 import Layout from "../components/Layout";
 
@@ -7,7 +6,7 @@ export default function Index() {
     <>
       <Layout>
         <Typography variant="h4" component="h1" gutterBottom>
-          Landing Page
+          Skills
         </Typography>
       </Layout>
     </>

@@ -15,8 +15,14 @@ import {
 import theme from "../src/theme";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import MenuIcon from "@mui/icons-material/Menu";
+import Link from 'next/link'
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  { label: "Home", route: "/" },
+  { label: "About", route: "/about" },
+  { label: "Skills", route: "/skills" },
+  { label: "Projects", route: "/projects" },
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const StyledAppBar = styled(AppBar, { theme })({
@@ -33,7 +39,7 @@ const ContentContainer = styled(Box, { theme })({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: theme.palette.blue.shadow.light
+  backgroundColor: theme.palette.blue.shadow.light,
 });
 
 export default function Layout({ children }) {
@@ -99,8 +105,10 @@ export default function Layout({ children }) {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <MenuItem key={page.route} onClick={handleCloseNavMenu}>
+                    <Link href={page.route}>
+                    <Typography textAlign="center">{page.label}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -116,17 +124,17 @@ export default function Layout({ children }) {
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.route}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  {page.label}
                 </Button>
               ))}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip title="Get in contact">
                 <IconButton
                   onClick={handleOpenUserMenu}
                   sx={{ p: 0, color: "white" }}
