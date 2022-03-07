@@ -12,12 +12,13 @@ import {
   MenuItem,
   styled,
 } from "@mui/material";
-import theme from "../src/theme";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import BackgroundParticles from "./BackgroundParticles";
 import CustomPaper from "./CustomPaper";
+import { motion } from "framer-motion";
+import theme from "../src/theme";
 
 const pages = [
   { label: "Home", route: "/" },
@@ -41,8 +42,12 @@ const ContentContainer = styled(Box, { theme })({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: theme.palette.blue.shadow.light,
+  backgroundColor: theme.palette.blue.shadow.dark,
 });
+
+const StyledBox = styled(Box, {theme})({
+  backgroundColor: theme.palette.blue.shadow.dark,
+})
 
 export default function Layout({ children }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -65,6 +70,7 @@ export default function Layout({ children }) {
 
   return (
     <Fragment>
+      <StyledBox>
       <StyledAppBar position="sticky">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -172,12 +178,23 @@ export default function Layout({ children }) {
           </Toolbar>
         </Container>
       </StyledAppBar>
-      <BackgroundParticles />
-      <ContentContainer>
-        <CustomPaper>
-          <Box>{children}</Box>
-        </CustomPaper>
-      </ContentContainer>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          delay: 0.5,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 1 },
+        }}
+      >
+        <ContentContainer>
+        <BackgroundParticles />
+          <CustomPaper>
+            <Box>{children}</Box>
+          </CustomPaper>
+        </ContentContainer>
+      </motion.div>
+    </StyledBox>
     </Fragment>
   );
 }
