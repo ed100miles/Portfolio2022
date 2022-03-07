@@ -15,7 +15,9 @@ import {
 import theme from "../src/theme";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import MenuIcon from "@mui/icons-material/Menu";
-import Link from 'next/link'
+import Link from "next/link";
+import BackgroundParticles from "./BackgroundParticles";
+import CustomPaper from "./CustomPaper";
 
 const pages = [
   { label: "Home", route: "/" },
@@ -107,7 +109,7 @@ export default function Layout({ children }) {
                 {pages.map((page) => (
                   <MenuItem key={page.route} onClick={handleCloseNavMenu}>
                     <Link href={page.route}>
-                    <Typography textAlign="center">{page.label}</Typography>
+                      <Typography textAlign="center">{page.label}</Typography>
                     </Link>
                   </MenuItem>
                 ))}
@@ -168,7 +170,12 @@ export default function Layout({ children }) {
           </Toolbar>
         </Container>
       </StyledAppBar>
-      <ContentContainer>{children}</ContentContainer>
+      <BackgroundParticles />
+      <ContentContainer>
+        <CustomPaper>
+          <Box>{children}</Box>
+        </CustomPaper>
+      </ContentContainer>
     </Fragment>
   );
 }

@@ -1,17 +1,14 @@
 // import * as React from 'react';
-import { Typography } from "@mui/material";
+import { Typography, Box, Paper, Container } from "@mui/material";
 import Layout from "../components/Layout";
-import BackgroundParticles from "../components/BackgroundParticles";
-export default function Index() {
+import theme from "../src/theme";
 
+export default function Index() {
   return (
-    <>
-      <Layout>
-        <BackgroundParticles/>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Landing Page
-        </Typography>
-      </Layout>
-    </>
+    <Layout>
+      <Typography variant="h4" component="h1" gutterBottom sx={{ color: theme.palette.blue.light }}>
+        Landing Page
+      </Typography>
+    </Layout>
   );
 }
