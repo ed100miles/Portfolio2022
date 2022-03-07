@@ -6,8 +6,8 @@ import theme from "../src/theme";
 export default function Index() {
   return (
     <Layout>
-      <Typography variant="h4" component="h1" gutterBottom sx={{ color: theme.palette.blue.light }}>
-        Landing Page
+      <Typography variant="h4" component="h1" gutterBottom sx={{ color: theme.palette.blue.shadow.light }}>
+        Home Page
       </Typography>
     </Layout>
   );

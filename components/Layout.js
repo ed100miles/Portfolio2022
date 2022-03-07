@@ -125,13 +125,15 @@ export default function Layout({ children }) {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
-                  key={page.route}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page.label}
-                </Button>
+                <Link href={page.route}>
+                  <Button
+                    key={page.route}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page.label}
+                  </Button>
+                </Link>
               ))}
             </Box>
 
