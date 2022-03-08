@@ -6,6 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import {Motion, AnimatePresence} from 'framer-motion'
+import Router from 'next/router';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -21,7 +22,9 @@ export default function MyApp(props) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={Router.pathname} />
+        </AnimatePresence>
       </ThemeProvider>
     </CacheProvider>
   );

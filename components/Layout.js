@@ -19,7 +19,7 @@ import BackgroundParticles from "./BackgroundParticles";
 import CustomPaper from "./CustomPaper";
 import { motion, AnimatePresence } from "framer-motion";
 import theme from "../src/theme";
-import { MotionPhotosAuto } from "@mui/icons-material";
+import Router from "next/router";
 
 const pages = [
   { label: "Home", route: "/" },
@@ -70,136 +70,131 @@ export default function Layout({ children }) {
   };
 
   return (
-    <motion.div exit={{opacity:0}}>
-      <StyledBox>
-        <StyledAppBar position="sticky">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-              >
-                My Portfolio
-              </Typography>
+    <StyledBox>
+      <StyledAppBar position="sticky">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            >
+              My Portfolio
+            </Typography>
 
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page.route} onClick={handleCloseNavMenu}>
-                      <Link href={page.route}>
-                        <Typography textAlign="center">{page.label}</Typography>
-                      </Link>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                My Portfolio
-              </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
                 {pages.map((page) => (
-                  <Link href={page.route}>
-                    <Button
-                      key={page.route}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      {page.label}
-                    </Button>
-                  </Link>
+                  <MenuItem key={page.route} onClick={handleCloseNavMenu}>
+                    <Link href={page.route}>
+                      <Typography textAlign="center">{page.label}</Typography>
+                    </Link>
+                  </MenuItem>
                 ))}
-              </Box>
-
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Get in contact">
-                  <IconButton
-                    onClick={handleOpenUserMenu}
-                    sx={{ p: 0, color: "white" }}
+              </Menu>
+            </Box>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            >
+              My Portfolio
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) => (
+                <Link href={page.route}>
+                  <Button
+                    key={page.route}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
                   >
-                    <ConnectWithoutContactIcon />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
+                    {page.label}
+                  </Button>
+                </Link>
+              ))}
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Get in contact">
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0, color: "white" }}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            </Toolbar>
-          </Container>
-        </StyledAppBar>
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            key='page'
-            exit={{opacity: 0}}
-            transition={{
-              delay: 0.2,
-              x: { type: "spring", stiffness: 100 },
-              default: { duration: 2 },
-            }}
-          >
+                  <ConnectWithoutContactIcon />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </StyledAppBar>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{opacity:0}}
+          transition={{
+            duration: 0.2,
+            ease: "easeInOut",
+            type: "tween",
+          }}
+        >
           <BackgroundParticles />
-            <ContentContainer>
-              <CustomPaper>
-                <Box>{children}</Box>
-              </CustomPaper>
-            </ContentContainer>
-          </motion.div>
-        </AnimatePresence>
-      </StyledBox>
-    </motion.div>
+          <ContentContainer>
+            <CustomPaper>
+              <Box>{children}</Box>
+            </CustomPaper>
+          </ContentContainer>
+        </motion.div>
+    </StyledBox>
   );
 }
