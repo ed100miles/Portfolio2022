@@ -19,7 +19,6 @@ import BackgroundParticles from "./BackgroundParticles";
 import CustomPaper from "./CustomPaper";
 import { motion } from "framer-motion";
 import theme from "../src/theme";
-import Router from "next/router";
 
 const pages = [
   { label: "Home", route: "/" },
@@ -27,6 +26,7 @@ const pages = [
   { label: "Skills", route: "/skills" },
   { label: "Projects", route: "/projects" },
 ];
+
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const StyledAppBar = styled(AppBar, { theme })({
@@ -82,7 +82,6 @@ export default function Layout({ children }) {
             >
               My Portfolio
             </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -110,14 +109,32 @@ export default function Layout({ children }) {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
+                  '& .MuiMenu-paper':{
+                    backgroundColor: theme.palette.blue.shadow.medium,
+                  }
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page.route} onClick={handleCloseNavMenu}>
-                    <Link href={page.route}>
-                      <Typography textAlign="center">{page.label}</Typography>
-                    </Link>
-                  </MenuItem>
+                  <motion.div
+                    sx={{backgroundColor: theme.palette.blue.dark}}
+                    whileHover={{
+                      x: '1vw',
+                      scale: 1.1,
+                    }}
+                  >
+                    <MenuItem key={page.route} onClick={handleCloseNavMenu}>
+                      <Link href={page.route}>
+                        <Typography
+                          textAlign="center"
+                          sx={{
+                            color: theme.palette.blue.shadow.light
+                          }}
+                        >
+                          {page.label}
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  </motion.div>
                 ))}
               </Menu>
             </Box>
@@ -135,14 +152,24 @@ export default function Layout({ children }) {
                   <Button
                     key={page.route}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={motion.div}
+                    sx={{
+                      my: 2,
+                      color: theme.palette.blue.shadow.light,
+                      display: "block",
+                    }}
+                    whileHover={{
+                      scale: 1.1,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                    }}
                   >
                     {page.label}
                   </Button>
                 </Link>
               ))}
             </Box>
-
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Get in contact">
                 <IconButton
@@ -178,23 +205,23 @@ export default function Layout({ children }) {
           </Toolbar>
         </Container>
       </StyledAppBar>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{opacity:0}}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            type: "tween",
-          }}
-        >
-          <BackgroundParticles />
-          <ContentContainer>
-            <CustomPaper>
-              <Box>{children}</Box>
-            </CustomPaper>
-          </ContentContainer>
-        </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+          type: "tween",
+        }}
+      >
+        <BackgroundParticles />
+        <ContentContainer>
+          <CustomPaper>
+            <Box>{children}</Box>
+          </CustomPaper>
+        </ContentContainer>
+      </motion.div>
     </StyledBox>
   );
 }

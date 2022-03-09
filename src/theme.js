@@ -5,10 +5,13 @@ const theme = createTheme({
   palette: {
     blue: {
       dark: "#12232E",
-      medium: "#007CC7",
+      mediumDark: "#0E3A55",
+      medium: "#09507B",
+      mediumLight: "#1871A6",
       light: "#4DA8DA",
       shadow: {
         dark: "#203647",
+        medium: "#8799A1",
         light: "#EEFBFB",
       },
     },
