@@ -110,7 +110,8 @@ export default function Layout({ children }) {
                 sx={{
                   display: { xs: "block", md: "none" },
                   '& .MuiMenu-paper':{
-                    backgroundColor: theme.palette.blue.shadow.medium,
+                    backgroundColor: theme.palette.blue.shadow.dark,
+                    border: `1px solid ${theme.palette.steel}`
                   }
                 }}
               >
