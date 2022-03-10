@@ -9,10 +9,22 @@ const theme = createTheme({
       medium: "#09507B",
       mediumLight: "#1871A6",
       light: "#4DA8DA",
+      transparent:{
+        dark: "#12232EE1",
+        mediumDark: "#0E3A55E1",
+        medium: "#09507BE1",
+        mediumLight: "#1871A6E1",
+        light: "#4DA8DAE1",
+      },
       shadow: {
         dark: "#203647",
         medium: "#8799A1",
         light: "#EEFBFB",
+        transparent: {
+          dark: "#203647E1",
+          medium: "#8799A1E1",
+          light: "#EEFBFBE1",
+        }
       },
     },
     steel: "#5E807F",

@@ -109,33 +109,40 @@ export default function Layout({ children }) {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
-                  '& .MuiMenu-paper':{
+                  opacity: 0.9,
+                  "& .MuiMenu-paper": {
+                    widthMin: "20vw",
+                    paddingLeft: "1vw",
+                    paddingRight: "2vw",
                     backgroundColor: theme.palette.blue.shadow.dark,
-                    border: `1px solid ${theme.palette.steel}`
-                  }
+                    border: `1px solid ${theme.palette.blue.transparent.medium}`,
+                  },
                 }}
               >
                 {pages.map((page) => (
-                  <motion.div
-                    sx={{backgroundColor: theme.palette.blue.dark}}
-                    whileHover={{
-                      x: '1vw',
-                      scale: 1.1,
-                    }}
-                  >
-                    <MenuItem key={page.route} onClick={handleCloseNavMenu}>
-                      <Link href={page.route}>
-                        <Typography
-                          textAlign="center"
-                          sx={{
-                            color: theme.palette.blue.shadow.light
-                          }}
-                        >
-                          {page.label}
-                        </Typography>
-                      </Link>
+                  <Link href={page.route}>
+                    <MenuItem
+                      key={page.route}
+                      onClick={handleCloseNavMenu}
+                      disableGutters
+                    >
+                      <Typography
+                        textAlign="left"
+                        sx={{
+                          color: theme.palette.blue.shadow.light,
+                          paddingRight: "1.5vw",
+                        }}
+                        component={motion.div}
+                        whileHover={{
+                          x: "1.5vw",
+                          scale: 1.2,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {page.label}
+                      </Typography>
                     </MenuItem>
-                  </motion.div>
+                  </Link>
                 ))}
               </Menu>
             </Box>
