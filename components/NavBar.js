@@ -128,7 +128,7 @@ export default function NavBar() {
                       component={motion.div}
                       whileHover={{
                         x: "1.5vw",
-                        scale: 1.2,
+                        scale: 1.1,
                         fontWeight: "bold",
                       }}
                     >
@@ -160,12 +160,14 @@ export default function NavBar() {
                 >
                   <Typography
                     component={motion.div}
-                    sx={{ color: theme.palette.blue.shadow.light }}
+                    sx={{ color: theme.palette.blue.shadow.light,
+                        fontSize: '14px',
+                        paddingLeft: '5px',
+                        paddingRight: '5px'
+                    }}
                     whileHover={{
-                      scale: 1.1,
+                      scale: 1.15,
                       color: theme.palette.blue.light,
-                      borderBottom: `1px solid ${theme.palette.blue.light}`,
-                      borderTop: `1px solid ${theme.palette.blue.light}`,
                     }}
                     transition={{
                       duration: 0.3,
