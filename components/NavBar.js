@@ -25,7 +25,12 @@ const pages = [
   { label: "Projects", route: "/projects" },
 ];
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = [
+  { label: "Profile", route: "" },
+  { label: "Account", route: "/about" },
+  { label: "Dashboard", route: "/skills" },
+  { label: "Logout", route: "/projects" },
+];
 
 const StyledAppBar = styled(AppBar, { theme })({
   backgroundColor: theme.palette.blue.shadow.dark,
@@ -34,6 +39,9 @@ const StyledAppBar = styled(AppBar, { theme })({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  borderBottom: "1px solid",
+  borderColor: theme.palette.blue.light,
+  opacity: 0.9,
 });
 
 export default function NavBar() {
@@ -145,20 +153,26 @@ export default function NavBar() {
                 <Button
                   key={page.route}
                   onClick={handleCloseNavMenu}
-                  component={motion.div}
                   sx={{
                     my: 2,
-                    color: theme.palette.blue.shadow.light,
                     display: "block",
                   }}
-                  whileHover={{
-                    scale: 1.1,
-                  }}
-                  transition={{
-                    duration: 0.3,
-                  }}
                 >
-                  {page.label}
+                  <Typography
+                    component={motion.div}
+                    sx={{ color: theme.palette.blue.shadow.light }}
+                    whileHover={{
+                      scale: 1.1,
+                      color: theme.palette.blue.light,
+                      borderBottom: `1px solid ${theme.palette.blue.light}`,
+                      borderTop: `1px solid ${theme.palette.blue.light}`,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                    }}
+                  >
+                    {page.label}
+                  </Typography>
                 </Button>
               </Link>
             ))}
@@ -170,11 +184,10 @@ export default function NavBar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
+                vertical: "bottom",
                 horizontal: "right",
               }}
               keepMounted
@@ -184,11 +197,41 @@ export default function NavBar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
+              sx={{
+                opacity: 0.9,
+                "& .MuiMenu-paper": {
+                  widthMin: "20vw",
+                  paddingLeft: "2vw",
+                  paddingRight: "1vw",
+                  backgroundColor: theme.palette.blue.shadow.dark,
+                  border: `1px solid ${theme.palette.blue.transparent.medium}`,
+                },
+              }}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+                <Link href={setting.route}>
+                  <MenuItem
+                    key={setting.route}
+                    onClick={handleCloseNavMenu}
+                    disableGutters
+                  >
+                    <Typography
+                      textAlign="center"
+                      sx={{
+                        color: theme.palette.blue.shadow.light,
+                        // paddingRight: "1.5vw",
+                      }}
+                      component={motion.div}
+                      whileHover={{
+                        x: "-1vw",
+                        scale: 1.1,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {setting.label}
+                    </Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -196,4 +239,4 @@ export default function NavBar() {
       </Container>
     </StyledAppBar>
   );
-};
+}

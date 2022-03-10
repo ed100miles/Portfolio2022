@@ -1,6 +1,4 @@
-import { useState } from "react";
 import {
-  AppBar,
   Box,
   styled,
 } from "@mui/material";
