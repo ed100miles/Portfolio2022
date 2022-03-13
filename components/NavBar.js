@@ -181,7 +181,14 @@ export default function NavBar() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Get in contact">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: "white" }}>
+              <IconButton 
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, color: theme.palette.steel}}
+                component={motion.div}
+                whileHover={{
+                    color: theme.palette.blue.light,
+                }}
+              >
                 <ConnectWithoutContactIcon />
               </IconButton>
             </Tooltip>

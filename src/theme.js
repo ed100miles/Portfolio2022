@@ -29,6 +29,28 @@ const theme = createTheme({
     },
     steel: "#5E807F",
   },
+  typography: {
+    allVariants: {
+      color: "#EEFBFB",
+      fontWeight: '200',
+      fontAlign: 'center'
+    },
+    h1: {
+      fontSize: '15vmin'
+    },
+    h2: {
+      fontSize: '10vmin'
+    },
+    h3: {
+      fontSize: '5vmin'
+    },
+    h4: {
+      fontSize: '3vmin'
+    },
+    p: {
+      fonstSize: '2vmin'
+    }
+  }
 });
 
 export default theme;
