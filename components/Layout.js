@@ -1,13 +1,9 @@
-import {
-  Box,
-  styled,
-} from "@mui/material";
+import { Box, styled } from "@mui/material";
 import BackgroundParticles from "./BackgroundParticles";
 import CustomPaper from "./CustomPaper";
 import { motion } from "framer-motion";
 import theme from "../src/theme";
 import NavBar from "./NavBar";
-
 
 const ContentContainer = styled(Box, { theme })({
   height: "95vh",
@@ -21,7 +17,7 @@ const StyledBox = styled(Box, { theme })({
   backgroundColor: theme.palette.blue.dark,
 });
 
-export default function Layout ({ children }) {
+export default function Layout({ children }) {
   return (
     <StyledBox>
       <NavBar />

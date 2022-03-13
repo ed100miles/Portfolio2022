@@ -50,6 +50,10 @@ const theme = createTheme({
     p1: {
       fontSize: '1.5vmin',
       color: "#EEFBFB"
+    },
+    p2: {
+      fontSize: '2.5vmin',
+      color: "#EEFBFB"
     }
   }
 });

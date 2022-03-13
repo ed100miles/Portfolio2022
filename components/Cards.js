@@ -22,30 +22,32 @@ const StyledCard = styled(Card, { theme })({
   backgroundColor: theme.palette.blue.shadow.dark,
   border: `solid 1px ${theme.palette.blue.light}`,
   width: "30vw",
-  minWidth: '250px',
-  maxHeight: '20vh',
+  minWidth: "250px",
+  maxHeight: "20vh",
   margin: "1vw",
 });
 
-const StyledAnimatedLinkCard = ({children, route}) => {
-  return(
+const StyledAnimatedLinkCard = ({ children, route }) => {
+  return (
     <Link href={route}>
       <StyledCard
         component={motion.div}
         whileHover={{
           scale: 1.05,
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         onClick
-      >{children}</StyledCard>
+      >
+        {children}
+      </StyledCard>
     </Link>
-  )
-}
+  );
+};
 
 export const LandingPageCards = () => {
   return (
     <CardsContainer>
-      <StyledAnimatedLinkCard route={'/skills'}>
+      <StyledAnimatedLinkCard route={"/skills"}>
         <CardContent>
           <Typography variant="h4" component="div">
             My Skills
@@ -56,7 +58,7 @@ export const LandingPageCards = () => {
         </CardContent>
         <CardMedia component="img" image="/images/skills.jpeg" alt="skills" />
       </StyledAnimatedLinkCard>
-      <StyledAnimatedLinkCard route={'/projects'}>
+      <StyledAnimatedLinkCard route={"/projects"}>
         <CardContent>
           <Typography variant="h4" component="div">
             Scrabble Cheat
@@ -67,7 +69,7 @@ export const LandingPageCards = () => {
         </CardContent>
         <CardMedia component="img" image="/images/scrabble.jpeg" alt="scrabble" />
       </StyledAnimatedLinkCard>
-      <StyledAnimatedLinkCard route={'/projects'}>
+      <StyledAnimatedLinkCard route={"/projects"}>
         <CardContent>
           <Typography variant="h4" component="div">
             A.I. Underwriter

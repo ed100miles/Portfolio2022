@@ -4,13 +4,14 @@ import theme from "../src/theme";
 import { motion } from "framer-motion";
 import { LandingPageCards } from "../components/Cards";
 
-const HomeContentContainer = styled(Box, { theme })({
+export const HomeContentContainer = styled(Box, { theme })({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  justifyContent: "space-evenly",
+  justifyContent: "center",
   height: "100%",
-  paddingBottom: "5%",
+  paddingRight: '2vw',
+  paddingLeft: '2vw'
 });
 
 export default function Index() {
