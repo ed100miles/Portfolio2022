@@ -39,7 +39,7 @@ export default function Index() {
             delay: 0,
           }}
         >
-          Hi!
+          Hello!
         </Typography>
         <Typography
           variant="h3"
@@ -54,7 +54,7 @@ export default function Index() {
             delay: 0.8,
           }}
         >
-          I'm Ed Miles - Full stack developer.
+          I'm Ed Miles, a full-stack developer.
         </Typography>
         <Typography
           variant="h3"

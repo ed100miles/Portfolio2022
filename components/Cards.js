@@ -1,31 +1,46 @@
 import {
   Box,
-  Button,
   Card,
-  CardActions,
   CardMedia,
   CardContent,
   Typography,
   styled,
 } from "@mui/material";
 import theme from "../src/theme";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const CardsContainer = styled(Box, { theme })({
   display: "flex",
-  flexWrap: 'wrap',
+  flexWrap: "wrap",
   alignItems: "center",
   justifyContent: "center",
-  paddingTop: '3vh'
+  paddingTop: "3vh",
 });
 
-const StyledCard = styled(Card, {theme})({
-    backgroundColor: theme.palette.blue.shadow.dark,
-    border: `solid 1px ${theme.palette.blue.light}`,
-    minWidth: '30vw',
-    minWidth: '40vw',
-    margin: '1vw'
-})
+const StyledCard = styled(Card, { theme })({
+  backgroundColor: theme.palette.blue.shadow.dark,
+  border: `solid 1px ${theme.palette.blue.light}`,
+  width: "30vw",
+  height: "30vh",
+  margin: "1vw",
+});
+
+const StyledAnimatedLinkCard = ({children, route}) => {
+  return(
+    <Link href={route}>
+      <StyledCard
+        component={motion.div}
+        whileHover={{
+          scale: 1.05,
+          cursor: 'pointer',
+          border: `solid 2px ${theme.palette.blue.light}`
+        }}
+        onClick
+      >{children}</StyledCard>
+    </Link>
+  )
+}
 
 export const LandingPageCards = () => {
   return (
@@ -40,42 +55,39 @@ export const LandingPageCards = () => {
         delay: 2.5,
       }}
     >
-      <StyledCard>
-        <CardMedia />
+      <StyledAnimatedLinkCard route={'/skills'}>
         <CardContent>
           <Typography variant="h4" component="div">
             My Skills
           </Typography>
+          <Typography variant="p1" component="div">
+            Detailed overview of my technical skills
+          </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </StyledCard>
-      <StyledCard>
-        <CardMedia />
+        <CardMedia component="img" image="/images/skills.jpeg" alt="skills" />
+      </StyledAnimatedLinkCard>
+      <StyledAnimatedLinkCard route={'/projects'}>
         <CardContent>
           <Typography variant="h4" component="div">
             Scrabble Cheat
           </Typography>
+          <Typography variant="p1" component="div">
+            Finds you the best words to play
+          </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </StyledCard>
-      <StyledCard>
-        <CardMedia />
+        <CardMedia component="img" image="/images/scrabble.jpeg" alt="scrabble" />
+      </StyledAnimatedLinkCard>
+      <StyledAnimatedLinkCard route={'/projects'}>
         <CardContent>
           <Typography variant="h4" component="div">
             A.I. Underwriter
           </Typography>
+          <Typography variant="p1" component="div">
+            Calculates how likely a driver is to need to claim
+          </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </StyledCard>
+        <CardMedia component="img" image="/images/ai.webp" alt="skills" />
+      </StyledAnimatedLinkCard>
     </CardsContainer>
   );
 };

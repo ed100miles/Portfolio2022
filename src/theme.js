@@ -36,7 +36,7 @@ const theme = createTheme({
       fontAlign: 'center'
     },
     h1: {
-      fontSize: '15vmin'
+      fontSize: '12vmin'
     },
     h2: {
       fontSize: '10vmin'
@@ -47,8 +47,9 @@ const theme = createTheme({
     h4: {
       fontSize: '3vmin'
     },
-    p: {
-      fonstSize: '2vmin'
+    p1: {
+      fontSize: '1.5vmin',
+      color: "#EEFBFB"
     }
   }
 });

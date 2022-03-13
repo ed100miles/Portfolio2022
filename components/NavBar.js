@@ -83,6 +83,7 @@ export default function NavBar() {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{color: theme.palette.blue.shadow.light}}
             >
               <MenuIcon />
             </IconButton>
@@ -140,7 +141,6 @@ export default function NavBar() {
             </Menu>
           </Box>
           <Typography
-            variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
@@ -183,10 +183,10 @@ export default function NavBar() {
             <Tooltip title="Get in contact">
               <IconButton 
                 onClick={handleOpenUserMenu}
-                sx={{ p: 0, color: theme.palette.steel}}
+                sx={{ p: 0, color: theme.palette.blue.shadow.light}}
                 component={motion.div}
                 whileHover={{
-                    color: theme.palette.blue.light,
+                    scale: 1.1
                 }}
               >
                 <ConnectWithoutContactIcon />
@@ -225,7 +225,6 @@ export default function NavBar() {
                     disableGutters
                   >
                     <Typography
-                      textAlign="center"
                       sx={{
                         color: theme.palette.blue.shadow.light,
                         // paddingRight: "1.5vw",
