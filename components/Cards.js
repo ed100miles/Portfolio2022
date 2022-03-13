@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const CardsContainer = styled(Box, { theme })({
   display: "flex",
   flexWrap: "wrap",
-  alignItems: "center",
+  alignItems: "strech",
   justifyContent: "center",
   paddingTop: "3vh",
 });
@@ -22,7 +22,8 @@ const StyledCard = styled(Card, { theme })({
   backgroundColor: theme.palette.blue.shadow.dark,
   border: `solid 1px ${theme.palette.blue.light}`,
   width: "30vw",
-  height: "30vh",
+  minWidth: '250px',
+  maxHeight: '20vh',
   margin: "1vw",
 });
 
@@ -34,7 +35,6 @@ const StyledAnimatedLinkCard = ({children, route}) => {
         whileHover={{
           scale: 1.05,
           cursor: 'pointer',
-          border: `solid 2px ${theme.palette.blue.light}`
         }}
         onClick
       >{children}</StyledCard>
@@ -44,17 +44,7 @@ const StyledAnimatedLinkCard = ({children, route}) => {
 
 export const LandingPageCards = () => {
   return (
-    <CardsContainer
-      component={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        duration: 1,
-        ease: "easeInOut",
-        type: "tween",
-        delay: 2.5,
-      }}
-    >
+    <CardsContainer>
       <StyledAnimatedLinkCard route={'/skills'}>
         <CardContent>
           <Typography variant="h4" component="div">
@@ -72,7 +62,7 @@ export const LandingPageCards = () => {
             Scrabble Cheat
           </Typography>
           <Typography variant="p1" component="div">
-            Finds you the best words to play
+            Finds you the best words you can to play
           </Typography>
         </CardContent>
         <CardMedia component="img" image="/images/scrabble.jpeg" alt="scrabble" />
