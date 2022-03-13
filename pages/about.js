@@ -51,11 +51,11 @@ export default function Index() {
                 return (
                   <ListItem
                     component={motion.div}
-                    initial={{ x: '-100%' }}
-                    animate={{ x: 0 }}
+                    initial={{ x: "-100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
                     transition={{
-                      duration: 0.5,
-                      delay: 0.2*index,
+                      duration: 0.3,
+                      delay: 0.2 * index,
                     }}
                   >
                     <DoubleArrow
