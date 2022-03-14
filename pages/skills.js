@@ -4,29 +4,34 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  styled,
+  styled
 } from "@mui/material";
 import { useState } from "react";
 import Layout from "../components/Layout";
 import theme from "../src/theme";
-import { ExpandMore } from "@mui/icons-material";
+import { ExpandMore} from "@mui/icons-material";
 import { HomeContentContainer } from ".";
+import { ProgrammingTabs } from "../components/SkillsTabs";
 
 const SkillsAccordionBox = styled(Box, { theme })({
   maxHeight: "60vh",
   maxWidth: "80vw",
-  backgroundColor: theme.palette.blue.shadow.dark,
+  backgroundColor: theme.palette.blue.dark,
   borderRadius: "1vmin",
-  opacity: ".8",
+  opacity: ".9",
   overflow: "scroll",
   marginLeft: "5vw",
   marginRight: "5vw",
-  padding: "1vmin",
 });
 
-const StyledAccordion = styled(Accordion, {theme})({
-  backgroundColor: theme.palette.blue.shadow.dark
-})
+const StyledExpandIcon = styled(ExpandMore, { theme })({
+  color: theme.palette.blue.shadow.light,
+});
+
+const StyledAccordion = styled(Accordion, { theme })({
+  backgroundColor: theme.palette.blue.shadow.dark,
+});
+
 
 export default function Skills() {
   const [expanded, setExpanded] = useState(false);
@@ -37,7 +42,7 @@ export default function Skills() {
   return (
     <Layout>
       <HomeContentContainer>
-        <Typography variant="h2" component="h1" gutterBottom>
+        <Typography variant="h2" gutterBottom>
           Technical Skills
         </Typography>
         <SkillsAccordionBox>
@@ -46,22 +51,16 @@ export default function Skills() {
             onChange={handleChange("panel1")}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore />}
+              expandIcon={<StyledExpandIcon />}
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                General settings
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                I am an accordion
+              <Typography variant="h4">
+                Programming
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-                Aliquam eget maximus est, id dignissim quam.
-              </Typography>
+              <ProgrammingTabs/>
             </AccordionDetails>
           </StyledAccordion>
           <StyledAccordion
@@ -69,17 +68,16 @@ export default function Skills() {
             onChange={handleChange("panel2")}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore />}
+              expandIcon={<StyledExpandIcon />}
               aria-controls="panel2bh-content"
               id="panel2bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>Users</Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                You are currently not an owner
+              <Typography variant="h4">
+                Front End
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="p2">
                 Donec placerat, lectus sed mattis semper, neque lectus feugiat
                 lectus, varius pulvinar diam eros in elit. Pellentesque convallis
                 laoreet laoreet.
@@ -91,19 +89,16 @@ export default function Skills() {
             onChange={handleChange("panel3")}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore />}
+              expandIcon={<StyledExpandIcon />}
               aria-controls="panel3bh-content"
               id="panel3bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Advanced settings
-              </Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                Filtering has been entirely disabled for whole web server
+              <Typography variant="h4">
+                Back End
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="p2">
                 Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
                 amet egestas eros, vitae egestas augue. Duis vel est augue.
               </Typography>
@@ -114,16 +109,56 @@ export default function Skills() {
             onChange={handleChange("panel4")}
           >
             <AccordionSummary
-              expandIcon={<ExpandMore />}
+              expandIcon={<StyledExpandIcon />}
               aria-controls="panel4bh-content"
               id="panel4bh-header"
             >
-              <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                Personal data
+              <Typography variant="h4">
+                Data
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
+              <Typography variant="p2">
+                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+                amet egestas eros, vitae egestas augue. Duis vel est augue.
+              </Typography>
+            </AccordionDetails>
+          </StyledAccordion>
+          <StyledAccordion
+            expanded={expanded === "panel5"}
+            onChange={handleChange("panel5")}
+          >
+            <AccordionSummary
+              expandIcon={<StyledExpandIcon />}
+              aria-controls="panel5bh-content"
+              id="panel5bh-header"
+            >
+              <Typography variant="h4">
+                Version Control
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="p2">
+                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
+                amet egestas eros, vitae egestas augue. Duis vel est augue.
+              </Typography>
+            </AccordionDetails>
+          </StyledAccordion>
+          <StyledAccordion
+            expanded={expanded === "panel6"}
+            onChange={handleChange("panel6")}
+          >
+            <AccordionSummary
+              expandIcon={<StyledExpandIcon />}
+              aria-controls="panel6bh-content"
+              id="panel6bh-header"
+            >
+              <Typography variant="h4">
+                Also Familiar With...
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="p2">
                 Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit
                 amet egestas eros, vitae egestas augue. Duis vel est augue.
               </Typography>
