@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import { useTheme } from "@emotion/react";
 import SkillsCopy from "../public/copy/skills.json";
 
+
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
   const theme = useTheme();
@@ -53,7 +54,7 @@ export const MakeSkillsTabs = ({skill}) => {
     <Box
       sx={{
         flexGrow: 1,
-        bgcolor: theme.palette.blue.shadow.medium,
+        bgcolor: theme.palette.blue.shadow.dark,
         display: "flex",
         height: 224,
       }}
@@ -67,7 +68,9 @@ export const MakeSkillsTabs = ({skill}) => {
         sx={{
           borderRight: 1,
           borderColor: "divider",
-          bgcolor: theme.palette.blue.shadow.medium,
+          bgcolor: theme.palette.blue.mediumDark,
+          borderTopLeftRadius:'1vmin',
+          borderBottomLeftRadius:'1vmin'
         }}
       >
         {Object.keys(SkillsCopy[skill]).map((key) => (

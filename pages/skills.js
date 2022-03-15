@@ -41,8 +41,13 @@ export default function Skills() {
 
   return (
     <Layout>
-      <HomeContentContainer>
-        <Typography variant="h2" gutterBottom>
+      <HomeContentContainer 
+        sx={{
+          paddingTop:'5vh',
+          height:'95vh',
+          display: 'block',
+          }}>
+        <Typography variant="h2" sx={{width: '100%'}} align='center' gutterBottom>
           Technical Skills
         </Typography>
         <SkillsAccordionBox>
