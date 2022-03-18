@@ -1,35 +1,70 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useTheme } from "@emotion/react";
-import SkillsCopy from "../public/copy/skills.json";
+import {
+  styled,
+  Tabs,
+  Tab,
+  Typography,
+  Box
+} from "@mui/material";
 
+import SkillsCopy from "../public/copy/skills.json";
+import theme from "../src/theme";
+
+const Tabpanel = styled(Box)({
+  bgcolor: theme.palette.blue.dark,
+  borderTopRightRadius: '1vmin',
+  borderBottomRightRadius: '1vmin',
+  borderRight: `solid ${theme.palette.blue.light} 1px`,
+  borderTop: `solid ${theme.palette.blue.light} 1px`,
+  borderBottom: `solid ${theme.palette.blue.light} 1px`,
+  width: "100%",
+  overflow: "scroll",
+})
+
+const TabContainer = styled(Box)({
+  flexGrow: 1,
+  bgcolor: theme.palette.blue.shadow.dark,
+  display: "flex",
+  height: 224,
+})
+
+const StyledTabs = styled(Tabs)({
+  borderRight: 1,
+  borderColor: "divider",
+  bgcolor: theme.palette.blue.mediumDark,
+  borderTopLeftRadius:'1vmin',
+  borderBottomLeftRadius:'1vmin',
+  border: `dashed ${theme.palette.blue.shadow.light} 1px`,
+  borderTop: `solid ${theme.palette.blue.shadow.light} 1px`,
+  borderLeft: `solid ${theme.palette.blue.shadow.light} 1px`,
+  borderBottom: `solid ${theme.palette.blue.shadow.light} 1px`,
+  color: theme.palette.blue.light,
+  ".Mui-selected":{
+    color: theme.palette.blue.light
+  }
+})
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
-  const theme = useTheme();
   return (
-    <Box
+    <Tabpanel
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
-      sx={{
-        bgcolor: theme.palette.blue.dark,
-        width: "100%",
-        overflow: "scroll",
-      }}
       {...other}
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography
+            variant="p3"
+            sx={{color: theme.palette.blue.shadow.light}}>
+            {children}
+          </Typography>
         </Box>
       )}
-    </Box>
+    </Tabpanel>
   );
 };
 
@@ -49,34 +84,19 @@ const a11yProps = (index) => {
 export const MakeSkillsTabs = ({skill}) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
-  const theme = useTheme();
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        bgcolor: theme.palette.blue.shadow.dark,
-        display: "flex",
-        height: 224,
-      }}
-    >
-      <Tabs
+    <TabContainer>
+      <StyledTabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{
-          borderRight: 1,
-          borderColor: "divider",
-          bgcolor: theme.palette.blue.mediumDark,
-          borderTopLeftRadius:'1vmin',
-          borderBottomLeftRadius:'1vmin'
-        }}
       >
         {Object.keys(SkillsCopy[skill]).map((key) => (
           <Tab label={key} {...a11yProps(0)} sx={{ color: "white" }} />
         ))}
-      </Tabs>
+      </StyledTabs>
       {Object.keys(SkillsCopy[skill]).map((key, index) => {
         return (
           <TabPanel value={value} index={index}>
@@ -84,6 +104,6 @@ export const MakeSkillsTabs = ({skill}) => {
           </TabPanel>
         );
       })}
-    </Box>
+    </TabContainer>
   );
 };

@@ -54,7 +54,11 @@ const theme = createTheme({
     p2: {
       fontSize: '2.5vmin',
       color: "#EEFBFB"
-    }
+    },
+    p3: {
+      fontSize: '2vmin',
+      color: "#EEFBFB"
+    },
   }
 });
 
