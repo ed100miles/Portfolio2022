@@ -32,7 +32,7 @@ const TabContainer = styled(Box)({
 const StyledTabs = styled(Tabs)({
   borderRight: 1,
   borderColor: "divider",
-  bgcolor: theme.palette.blue.mediumDark,
+  backgroundColor: theme.palette.blue.dark,
   borderTopLeftRadius:'1vmin',
   borderBottomLeftRadius:'1vmin',
   border: `dashed ${theme.palette.blue.shadow.light} 1px`,
@@ -41,7 +41,11 @@ const StyledTabs = styled(Tabs)({
   borderBottom: `solid ${theme.palette.blue.shadow.light} 1px`,
   color: theme.palette.blue.light,
   ".Mui-selected":{
-    color: theme.palette.blue.light
+    color: theme.palette.blue.light,
+    fontWeight: 'bold'
+  },
+  ".MuiTabs-indicator":{
+    backgroundColor: theme.palette.blue.light
   }
 })
 
