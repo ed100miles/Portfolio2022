@@ -50,6 +50,7 @@ export default function Index() {
               {aboutMeCopy.map((copy, index) => {
                 return (
                   <ListItem
+                    key={index}
                     component={motion.div}
                     initial={{ x: "-100%", opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}

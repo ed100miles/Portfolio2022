@@ -113,8 +113,8 @@ export default function NavBar() {
                 },
               }}
             >
-              {pages.map((page) => (
-                <Link href={page.route}>
+              {pages.map((page, index) => (
+                <Link href={page.route} key={index} passHref>
                   <MenuItem
                     key={page.route}
                     onClick={handleCloseNavMenu}
@@ -148,8 +148,8 @@ export default function NavBar() {
             My Portfolio
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Link href={page.route}>
+            {pages.map((page, index) => (
+              <Link href={page.route} key={index} passHref>
                 <Button
                   key={page.route}
                   onClick={handleCloseNavMenu}
@@ -217,8 +217,8 @@ export default function NavBar() {
                 },
               }}
             >
-              {settings.map((setting) => (
-                <Link href={setting.route}>
+              {settings.map((setting, index) => (
+                <Link href={setting.route} key={index} passHref>
                   <MenuItem
                     key={setting.route}
                     onClick={handleCloseNavMenu}

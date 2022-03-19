@@ -51,9 +51,10 @@ export default function Skills() {
           Technical Skills
         </Typography>
         <SkillsAccordionBox>
-          {Object.keys(SkillsCopy).map((skill) => {
+          {Object.keys(SkillsCopy).map((skill, index) => {
             return (
               <StyledAccordion
+                key={index}
                 expanded={expanded === skill}
                 onChange={handleChange(skill)}
               >

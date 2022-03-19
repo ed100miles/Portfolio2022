@@ -29,7 +29,7 @@ const StyledCard = styled(Card, { theme })({
 
 const StyledAnimatedLinkCard = ({ children, route }) => {
   return (
-    <Link href={route}>
+    <Link href={route} passHref>
       <StyledCard
         component={motion.div}
         whileHover={{

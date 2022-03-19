@@ -97,13 +97,13 @@ export const MakeSkillsTabs = ({skill}) => {
         onChange={handleChange}
         aria-label="Vertical tabs example"
       >
-        {Object.keys(SkillsCopy[skill]).map((key) => (
-          <Tab label={key} {...a11yProps(0)} sx={{ color: "white" }} />
+        {Object.keys(SkillsCopy[skill]).map((key, index) => (
+          <Tab label={key} {...a11yProps(0)} sx={{ color: "white" }} key={index}/>
         ))}
       </StyledTabs>
       {Object.keys(SkillsCopy[skill]).map((key, index) => {
         return (
-          <TabPanel value={value} index={index}>
+          <TabPanel value={value} index={index} key={index}>
             {SkillsCopy[skill][key]}
           </TabPanel>
         );

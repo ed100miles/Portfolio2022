@@ -32,7 +32,7 @@ export default function Index() {
           Hello!
         </Typography>
         <Typography variant="h3" gutterBottom>
-          I'm Ed Miles, a full-stack developer.
+          I am Ed Miles, a full-stack developer.
         </Typography>
         <Typography variant="h3" gutterBottom>
           Thanks for visiting my site.
