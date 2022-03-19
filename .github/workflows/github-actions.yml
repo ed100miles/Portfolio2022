@@ -1,6 +1,5 @@
-name: Deploy master branch
-- name: Serverless
-  uses: serverless/github-action@v1.53.0
+name: Serverless
+uses: serverless/github-action@v1.53.0
 
 on:
   push:
