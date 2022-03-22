@@ -58,7 +58,7 @@ export const LandingPageCards = () => {
         </CardContent>
         <CardMedia component="img" image="/images/skills.jpeg" alt="skills" />
       </StyledAnimatedLinkCard>
-      <StyledAnimatedLinkCard route={"/projects"}>
+      <StyledAnimatedLinkCard route={"/projects/scrabble"}>
         <CardContent>
           <Typography variant="h4" component="div">
             Scrabble Cheat
@@ -69,13 +69,13 @@ export const LandingPageCards = () => {
         </CardContent>
         <CardMedia component="img" image="/images/scrabble.jpeg" alt="scrabble" />
       </StyledAnimatedLinkCard>
-      <StyledAnimatedLinkCard route={"/projects"}>
+      <StyledAnimatedLinkCard route={"/projects/underwriter"}>
         <CardContent>
           <Typography variant="h4" component="div">
             A.I. Underwriter
           </Typography>
           <Typography variant="p1" component="div">
-            Calculates how likely a driver is to need to claim
+            Calculates how likely a driver is to make a claim
           </Typography>
         </CardContent>
         <CardMedia component="img" image="/images/ai.webp" alt="skills" />
