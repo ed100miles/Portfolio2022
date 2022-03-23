@@ -71,8 +71,12 @@ export default function Index() {
             alignItems: "center",
             flexWrap: "wrap",
             flexDirection: "column",
+            '&[tabindex]':{
+              outline: 'none'
+            }
           }}
-      
+          onKeyUp={(e) => keyUpHandler(e)}
+          tabIndex='1'
         >
           <Typography variant="h2" component="h1" gutterBottom>
             Scrabble
@@ -86,8 +90,6 @@ export default function Index() {
               flexWrap: "wrap",
               justifyContent: "center",
             }}
-            onKeyUp={(e) => keyUpHandler(e)}
-            tabIndex={-1}
           >
             {board.map((letter, index) => {
               return (
