@@ -40,7 +40,7 @@ const aboutMeCopy = [
 export default function Index() {
   return (
     <>
-      <Layout>
+      <Layout showParticles={true}>
         <HomeContentContainer>
           <Typography variant="h2" gutterBottom>
             About Me

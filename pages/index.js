@@ -16,7 +16,7 @@ export const HomeContentContainer = styled(Box, { theme })({
 
 export default function Index() {
   return (
-    <Layout>
+    <Layout showParticles={true}>
       <HomeContentContainer
         component={motion.div}
         initial={{ opacity: 0 }}

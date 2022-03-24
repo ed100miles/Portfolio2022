@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import BackgroundParticles from "./BackgroundParticles";
-import CustomPaper from "./CustomPaper";
+import { CustomPaper, CustomPaperNoGradient } from "./CustomPaper";
 import { motion } from "framer-motion";
 import theme from "../src/theme";
 import NavBar from "./NavBar";
@@ -17,7 +17,7 @@ const StyledBox = styled(Box, { theme })({
   backgroundColor: theme.palette.blue.dark,
 });
 
-export default function Layout({ children }) {
+export default function Layout(props) {
   return (
     <StyledBox>
       <NavBar />
@@ -31,11 +31,17 @@ export default function Layout({ children }) {
           type: "tween",
         }}
       >
-        <BackgroundParticles />
+        {props.showParticles && <BackgroundParticles />}
         <ContentContainer>
-          <CustomPaper>
-            <Box>{children}</Box>
-          </CustomPaper>
+          {props.showParticles ? (
+            <CustomPaper>
+              <Box>{props.children}</Box>
+            </CustomPaper>
+          ) : (
+            <CustomPaperNoGradient>
+              <Box>{props.children}</Box>
+            </CustomPaperNoGradient>
+          )}
         </ContentContainer>
       </motion.div>
     </StyledBox>

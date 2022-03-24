@@ -40,7 +40,7 @@ export default function Skills() {
   };
 
   return (
-    <Layout>
+    <Layout showParticles={true}>
       <HomeContentContainer 
         sx={{
           paddingTop:'5vh',

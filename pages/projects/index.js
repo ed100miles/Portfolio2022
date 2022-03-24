@@ -4,7 +4,7 @@ import Layout from "../../components/Layout";
 export default function Index() {
   return (
     <>
-      <Layout>
+      <Layout showParticles={true}>
         <Typography variant="h4" component="h1" gutterBottom>
           Projects
         </Typography>
