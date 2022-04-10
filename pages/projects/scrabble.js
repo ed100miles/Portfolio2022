@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Typography, Box, styled } from "@mui/material";
+import { Typography, Box, styled, ButtonGroup, Button } from "@mui/material";
 import Layout from "../../components/Layout";
 import theme from "../../src/theme";
 import { motion } from "framer-motion";
-import { MoveDown } from "@mui/icons-material";
 
 const SquareBox = styled(Box)({
   height: "4vmin",
@@ -19,10 +18,61 @@ const SquareBox = styled(Box)({
   },
 });
 
+const TileContainer = styled(Box)({
+  width: "30vw",
+  minWidth: "calc(6vmin*7)",
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "space-around",
+  paddingTop: "3vh",
+});
+
+const StyledTile = styled(Box)({
+  height: "6vmin",
+  width: "6vmin",
+  border: `solid 1px ${theme.palette.blue.shadow.medium}`,
+  borderRadius: "1vmin",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: theme.palette.blue.shadow.medium,
+  },
+});
+
+const DirectionButton = ({ children, selected, btnDirection, setDirection }) => {
+  return (
+    <Button
+      size="small"
+      onClick={() => setDirection(btnDirection)}
+      sx={{
+        color: theme.palette.blue.light,
+        borderColor: theme.palette.blue.light,
+        backgroundColor: selected
+          ? theme.palette.blue.shadow.dark
+          : theme.palette.blue.dark,
+        fontWeight: selected ? "bold" : "normal",
+      }}
+    >
+      {children}
+    </Button>
+  );
+};
+
 export default function Index() {
   const [board, setBoard] = useState(Array(225).fill(""));
+  const [onBoard, setOnBoard] = useState(false);
   const [selectedSquare, setSelectedSquare] = useState(112);
+  const [tiles, setTiles] = useState(Array(7).fill(""));
+  const [selectedTile, setSelectedTile] = useState(null);
   const [direction, setDirection] = useState("right");
+
+  const handleTileClick = (e) => {
+    setOnBoard(false);
+    setSelectedTile(e.target.id);
+    console.log(selectedTile);
+  };
 
   const setDirectionHandler = (rule) => {
     if (rule === "moveLeft") {
@@ -40,38 +90,54 @@ export default function Index() {
     }
   };
 
-  const keyUpHandler = (e) => {
-    console.log(e.key);
+  const boardKeyUpHandler = (e) => {
     const isLetter = e.key.match(/^[A-z]$/g) !== null;
     const newBoard = [...board];
-    if (isLetter) {
-      newBoard[selectedSquare] = e.key;
-      setBoard(newBoard);
-      setDirectionHandler();
-    } else if (e.key === "Backspace") {
-      newBoard[selectedSquare] = "";
-      setBoard(newBoard);
-      if (direction === "right" && selectedSquare % 15 !== 0) {
+    if (onBoard) {
+      if (isLetter) {
+        newBoard[selectedSquare] = e.key;
+        setBoard(newBoard);
+        setDirectionHandler();
+      } else if (e.key === "Backspace") {
+        newBoard[selectedSquare] = "";
+        setBoard(newBoard);
+        if (direction === "right" && selectedSquare % 15 !== 0) {
+          setDirectionHandler("moveLeft");
+        } else if (direction === "down" && selectedSquare > 14) {
+          setDirectionHandler("moveUp");
+        }
+      }
+      if (e.key === "ArrowLeft" && selectedSquare !== 0) {
         setDirectionHandler("moveLeft");
-      } else if (direction === "down" && selectedSquare > 14) {
+      }
+      if (e.key === "ArrowRight" && selectedSquare !== 225) {
+        setDirectionHandler("moveRight");
+      }
+      if (e.key === "ArrowDown" && selectedSquare < 210) {
+        setDirectionHandler("moveDown");
+      }
+      if (e.key === "ArrowUp" && selectedSquare > 14) {
         setDirectionHandler("moveUp");
       }
     }
-    switch (e.key) {
-      case "ArrowLeft": {
-        if (selectedSquare !== 0) {
-          setDirectionHandler("moveLeft");
-        }
+  };
+
+  const tileKeyUpHandler = (e) => {
+    const isLetter = e.key.match(/^[A-z]$/g) !== null;
+    const newTiles = [...tiles];
+    if (isLetter) {
+      newTiles[selectedTile] = e.key;
+      setTiles(newTiles);
+      if (selectedTile < 6) {
+        setSelectedTile(Number(selectedTile) + 1);
       }
-      case "ArrowRight": {
-        if (selectedSquare !== 225){
-          setDirectionHandler('moveRight')
-        }
+    }
+    if (e.key === "Backspace") {
+      newTiles[selectedTile] = "";
+      setTiles(newTiles);
+      if (selectedTile > 0) {
+        setSelectedTile(Number(selectedTile) - 1);
       }
-      case 'ArrowDown': {
-        if (selectedSquare <210){setDirectionHandler('moveDown')}
-      }
-      // TODO: MoveUP
     }
   };
 
@@ -100,9 +166,38 @@ export default function Index() {
     );
   };
 
+  const Tile = ({ index, letter, selected }) => {
+    return (
+      <StyledTile
+        id={index}
+        onClick={handleTileClick}
+        component={motion.div}
+        initial={selected ? { backgroundColor: theme.palette.blue.dark } : {}}
+        animate={selected ? { backgroundColor: theme.palette.blue.medium } : {}}
+        transition={{
+          repeat: Infinity,
+          repeatType: "reverse",
+          duration: 1,
+        }}
+      >
+        {letter}
+      </StyledTile>
+    );
+  };
+
   return (
-    <>
-      <Layout>
+    <Layout>
+      <Typography variant="h2" component="h1" align="center" gutterBottom>
+        Scrabble
+      </Typography>
+      <Box
+        onKeyUp={(e) => boardKeyUpHandler(e)}
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          width: "100vw",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -114,14 +209,10 @@ export default function Index() {
               outline: "none",
             },
           }}
-          onKeyUp={(e) => keyUpHandler(e)}
           tabIndex="1"
         >
-          <Typography variant="h2" component="h1" gutterBottom>
-            Scrabble
-          </Typography>
           <Box
-            // component="form"
+            onClick={() => setOnBoard(true)}
             sx={{
               maxWidth: "61vmin",
               maxHeight: "60vmin",
@@ -136,13 +227,48 @@ export default function Index() {
                   index={index}
                   key={index}
                   letter={letter}
-                  selected={index === selectedSquare}
+                  selected={onBoard && index === selectedSquare}
                 />
               );
             })}
+            <ButtonGroup sx={{ marginTop: "5px" }}>
+              <DirectionButton
+                selected={direction === "right"}
+                btnDirection={"right"}
+                setDirection={setDirection}
+              >
+                Type Across
+              </DirectionButton>
+              <DirectionButton
+                selected={direction === "down"}
+                btnDirection={"down"}
+                setDirection={setDirection}
+              >
+                Type Down
+              </DirectionButton>
+            </ButtonGroup>
           </Box>
         </Box>
-      </Layout>
-    </>
+        <TileContainer
+          onKeyUp={(e) => tileKeyUpHandler(e)}
+          tabIndex="1"
+          sx={{
+            "&[tabindex]": {
+              outline: "none",
+            },
+          }}
+        >
+          {tiles.map((_, index) => {
+            return (
+              <Tile
+                index={index}
+                selected={!onBoard && index == selectedTile}
+                letter={tiles[index]}
+              />
+            );
+          })}
+        </TileContainer>
+      </Box>
+    </Layout>
   );
 }
