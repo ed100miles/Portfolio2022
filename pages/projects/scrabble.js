@@ -264,6 +264,7 @@ export default function Index() {
                 index={index}
                 selected={!onBoard && index == selectedTile}
                 letter={tiles[index]}
+                key={index}
               />
             );
           })}
