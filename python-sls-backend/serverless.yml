@@ -9,3 +9,14 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+  
+  return_words:
+    handler: scrabble_handler.return_words
+    events:
+      - httpApi:
+          path: /return_words
+          method: post
